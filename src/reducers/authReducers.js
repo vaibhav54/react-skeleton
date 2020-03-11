@@ -1,7 +1,8 @@
-import isEmpty from 'is-empty';
+import setAuthToken from '../utils/setAuthToken';
 import {
-  SET_CURRENT_USER,
-  USER_LOADING
+  LOGIN_USER_PENDING,
+  LOGIN_USER_SUCCESS,
+  SET_USER_AUTHORIZED
 } from "../actions/types";
 
 const initialState = {
@@ -10,20 +11,33 @@ const initialState = {
   loading: false
 };
 
-export default function(state = initialState, action) {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_CURRENT_USER:
+    case LOGIN_USER_SUCCESS: {
+      // Set token to localStorage
+      const { token } = action.payload.data;
+      localStorage.setItem("jwtToken", token);
+      // Set token to Auth header
+      setAuthToken(token);
       return {
         ...state,
-        isAuthenticated: !isEmpty(action.payload),
-        user: action.payload
+        isAuthenticated: true,
+        loading: false
       };
-    case USER_LOADING:
+    }
+    case LOGIN_USER_PENDING:
       return {
         ...state,
         loading: true
+      };
+    case SET_USER_AUTHORIZED:
+      return {
+        ...state,
+        isAuthenticated: action.payload.isAuthenticated
       };
     default:
       return state;
   }
 }
+
+export default authReducer;
