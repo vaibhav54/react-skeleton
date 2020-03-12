@@ -52,25 +52,3 @@ function App() {
 }
 
 export default App;
-
-
-
-const data = [{
-  title: 'QC - Record',
-  regentRefrigerator: 2,
-  serialNo: 123,
-  mediserve: 1233,
-  acceptableLimits: '2 - 6C',
-  reportMonth: 'OCT',
-  reportYear: 2019,
-  datacollection: {
-   1: {
-     upper: '',
-     lower: '',
-     chart: '',
-     range: '',
-     digital: '',
-     userId: ''
-   }
-  }
-}]
