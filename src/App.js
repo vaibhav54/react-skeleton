@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import jwt_decode from "jwt-decode";
-import Landing from './components/Landing';
 import Register from './components/Register';
 import Login from './components/Login';
 import store from './store';
@@ -40,7 +39,7 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <div className="App">
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Switch>
@@ -53,3 +52,25 @@ function App() {
 }
 
 export default App;
+
+
+
+const data = [{
+  title: 'QC - Record',
+  regentRefrigerator: 2,
+  serialNo: 123,
+  mediserve: 1233,
+  acceptableLimits: '2 - 6C',
+  reportMonth: 'OCT',
+  reportYear: 2019,
+  datacollection: {
+   1: {
+     upper: '',
+     lower: '',
+     chart: '',
+     range: '',
+     digital: '',
+     userId: ''
+   }
+  }
+}]
