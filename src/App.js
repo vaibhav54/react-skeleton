@@ -8,11 +8,9 @@ import store from './store';
 import setAuthToken from "./utils/setAuthToken";
 import { logoutUser } from "./actions/actions";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import Dashboard from "./components/Dashboard/Dashboard";
+import Dashboard from "./components/Dashboard";
 
 import { SET_USER_AUTHORIZED } from './actions/types';
-
-import './App.css';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -39,10 +37,11 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <div className="App">
-          <Route exact path="/" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/" component={Login} />
           <Switch>
+            <PrivateRoute exact path="/users" render={()=>(<div>hello world</div>)} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
           </Switch>
         </div>

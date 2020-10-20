@@ -19,7 +19,8 @@ export const registerUser = (userData) => {
 };
 
 export const loginUser = userData => {
-  const url = '/login';
+  console.log('userData', userData);
+  const url = '/users/login';
   const payload = {
     action: LOGIN_USER,
     method: 'POST',
